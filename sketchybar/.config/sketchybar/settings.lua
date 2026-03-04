@@ -50,14 +50,14 @@ return {
     display = 1,
     paddings = 0,
 
-    icons = "sf-symbols",   -- Options: "sf-symbols", "nerdfont"
+    icons = "NerdFont",   -- Options: "sf-symbols", "NerdFont"
     animated_icons = false, -- Set to true if you want to use animated icons
 
     font = {
         text = "MonoLisa",                 -- Used for text
         numbers = "MonoLisa",              -- Used for numbers
         icons = "Apple Symbols",           -- Used for icons (SF Symbols)
-        nerd_icons = "Symbols Nerd Font Mono", -- Used for NerdFont icons
+        nerd_icons = "Hack Nerd Font", -- Used for NerdFont icons
         app_icons = "sketchybar-app-font", -- Used for app icons
         sizes = {
             text = 13.0,

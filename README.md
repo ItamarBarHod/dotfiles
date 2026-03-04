@@ -34,15 +34,15 @@ stow -t ~ -D <package>   # removes symlinks for that package
 
 ## Packages
 
-| Package | What it configures |
-|-|-|
-| `aerospace` | AeroSpace tiling window manager |
-| `git` | Git config |
-| `kitty` | Kitty terminal |
-| `nvim` | Neovim (LazyVim) |
-| `sketchybar` | SketchyBar status bar |
-| `tmux` | tmux |
-| `zsh` | Zsh + Oh My Zsh |
+| Package      | What it configures              |
+| ------------ | ------------------------------- |
+| `aerospace`  | AeroSpace tiling window manager |
+| `git`        | Git config                      |
+| `kitty`      | Kitty terminal                  |
+| `nvim`       | Neovim (LazyVim)                |
+| `sketchybar` | SketchyBar status bar           |
+| `tmux`       | tmux                            |
+| `zsh`        | Zsh + Oh My Zsh                 |
 
 ## Adding a new package
 

@@ -6,9 +6,9 @@ sbar.default({
     updates = "when_shown",
     icon = {
         font = {
-            family = settings.font.icons,
+            family = (settings.icons == "NerdFont") and settings.font.nerd_icons or settings.font.icons,
             style = settings.font.style_map["Regular"],
-            size = settings.font.sizes.icons
+            size = (settings.icons == "NerdFont") and settings.font.sizes.nerd_icons or settings.font.sizes.icons
         },
         color = colors.text,
         padding_left = settings.paddings,

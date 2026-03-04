@@ -1,8 +1,107 @@
-#!/usr/bin/env lua
+#!/usr/bin/env sh
 
--- Load the sketchybar-package and prepare the helper binaries
-require("helpers")
-require("init")
+color=0x40ffffff
+borderColor=0x30FFFFFF
+borderWidth=2
+height=30
+radius=20
+padding=0
 
--- Enable hot reloading
-sbar.exec("sketchybar --hotload true")
+sketchybar --bar \
+    height=40 \
+    position=top \
+    color=0x00000000 \
+    y_offset=4 \
+    blur_radius=20
+
+sketchybar --default \
+    drawing=on \
+    updates=on \
+    label.font="Hack Nerd Font:Medium:13" \
+    icon.font="Hack Nerd Font:Bold:15" \
+    padding_left=$padding \
+    padding_right=$padding
+
+sketchybar --add event aerospace_workspace_change
+
+# -------------------- Left Side -----------------------
+
+sketchybar --add item logo left \
+    --set logo \
+        icon="" \
+        icon.font="Hack Nerd Font:Regular:20" \
+        icon.color=0xFFffffff \
+        padding_left=10 \
+        padding_right=13 \
+        click_script="open -a 'System Settings'"
+
+sketchybar --add item spacer left \
+    --set spacer width=15
+
+sketchybar --add item Aerospace left \
+    --subscribe Aerospace aerospace_workspace_change \
+    --set Aerospace \
+        label.font="Hack Nerd Font:Bold:14" \
+        label.color=0xFFffffff \
+        label.padding_left=12 \
+        label.padding_right=12 \
+        script="$HOME/.config/sketchybar/plugins/aerospace.sh"
+
+# -------------------- Right Side -----------------------
+
+MENUS="$HOME/.config/sketchybar/helpers/bin/menus"
+
+sketchybar --add alias "Control Center,Clock" right \
+    --set "Control Center,Clock" \
+        padding_right=-8 \
+        click_script="$MENUS -s 'Control Center,Clock'"
+
+sketchybar --add alias "Control Center,WiFi" right \
+    --set "Control Center,WiFi" \
+        click_script="$MENUS -s 'Control Center,WiFi'"
+
+sketchybar --add alias "Control Center,Battery" right \
+    --set "Control Center,Battery" \
+        click_script="$MENUS -s 'Control Center,Battery'"
+
+sketchybar --add alias "Control Center,Sound" right \
+    --set "Control Center,Sound" \
+        click_script="$MENUS -s 'Control Center,Sound'"
+
+# -------------------- Brackets -----------------------
+
+sketchybar --add bracket RechteSeite \
+        "Control Center,Clock" \
+        "Control Center,Sound" \
+    --set RechteSeite \
+        background.color=$color \
+        background.height=$height \
+        background.corner_radius=$radius \
+        background.padding_right=$radius \
+        background.border_width=$borderWidth \
+        background.border_color=$borderColor \
+        blur_radius=4
+
+sketchybar --add bracket linkeSeite \
+        logo \
+    --set linkeSeite \
+        background.color=$color \
+        background.height=$height \
+        background.corner_radius=$radius \
+        background.padding_right=$radius \
+        background.border_width=$borderWidth \
+        background.border_color=$borderColor \
+        blur_radius=4
+
+sketchybar --add bracket Aerobuble \
+        Aerospace \
+    --set Aerobuble \
+        background.color=$color \
+        background.height=$height \
+        background.corner_radius=$radius \
+        background.padding_right=$radius \
+        background.border_width=$borderWidth \
+        background.border_color=$borderColor \
+        blur_radius=4
+
+sketchybar --update
