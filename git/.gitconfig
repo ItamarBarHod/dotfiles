@@ -1,0 +1,7 @@
+[user]
+	email = itamar.bar.hod@safebreach.com
+	name = Itamar Bar Hod
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
