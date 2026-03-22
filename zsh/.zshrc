@@ -46,10 +46,11 @@ export EDITOR='nvim'
 # Set up PATH additions (e.g., for Homebrew, Node, Go, etc.)
 export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$PATH"
 
-# Enable LS_COLORS and nicer ls defaults
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
-alias ll='ls -lha'
+# Aliases
+alias c='clear'
+alias v='nvim'
+alias ll='eza -lha --icons'
+alias ff='fastfetch'
 
 # Enable syntax highlighting (requires plugin installed)
 # brew install zsh-syntax-highlighting
@@ -63,6 +64,10 @@ alias ll='ls -lha'
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
 
 # Enable vi keybindings (or comment if you prefer emacs)
 bindkey -v
@@ -80,7 +85,7 @@ load-nvmrc() {
   if [ -n "$nvmrc_path" ]; then
     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
     if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
+      nvm install --no-source
     elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
       nvm use
     fi
@@ -99,11 +104,16 @@ export SBKeys="/Users/itamarbarhod/.ssh/keys"
 export SBiTerm="/Users/itamarbarhod/Projects/iterm"
 export RABBITMQ_PASS=AgwIeAspAPQa4fla 
 
-# oh my posh
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/theme.omp.json)"
-fi
+# Starship prompt
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+eval "$(starship init zsh)"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export ENABLE_LSP_TOOL=1
+
+# Zoxide (smart cd replacement)
+eval "$(zoxide init zsh --cmd cd)"
+
+# Atuin (shared shell history across all sessions)
+eval "$(atuin init zsh)"
