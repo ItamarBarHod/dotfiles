@@ -1,12 +1,12 @@
 local function set_git_highlights()
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusUntracked", { fg = "#e0af68", bold = true }) -- yellow
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusAdded",     { fg = "#9ece6a", bold = true }) -- green
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusModified",  { fg = "#e0af68", bold = true }) -- yellow
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusDeleted",   { fg = "#f7768e", bold = true }) -- red
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusRenamed",   { fg = "#e0af68", bold = true }) -- yellow
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusStaged",    { fg = "#9ece6a", bold = true }) -- green
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusIgnored",   { fg = "#565f89" })               -- dim
-  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusUnmerged",  { fg = "#f7768e", bold = true }) -- red
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusUntracked", { fg = "#e0af68" }) -- yellow
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusAdded",     { fg = "#9ece6a" }) -- green
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusModified",  { fg = "#e0af68" }) -- yellow
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusDeleted",   { fg = "#f7768e" }) -- red
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusRenamed",   { fg = "#e0af68" }) -- yellow
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusStaged",    { fg = "#9ece6a" }) -- green
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusIgnored",   { fg = "#565f89" }) -- dim
+  vim.api.nvim_set_hl(0, "SnacksPickerGitStatusUnmerged",  { fg = "#f7768e" }) -- red
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", { callback = set_git_highlights })
