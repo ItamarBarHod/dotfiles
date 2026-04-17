@@ -75,8 +75,19 @@ bindkey -v
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Lazy-load NVM: only initialize when node/npm/nvm/npx/yarn is first called
+nvm() {
+  unset -f nvm node npm npx yarn pnpm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+node() { nvm >/dev/null; node "$@"; }
+npm()  { nvm >/dev/null; npm "$@"; }
+npx()  { nvm >/dev/null; npx "$@"; }
+yarn() { nvm >/dev/null; yarn "$@"; }
+pnpm() { nvm >/dev/null; pnpm "$@"; }
 
 #[S]afe[B]reach[C]onnect - fuzzy find a server by name/ip/jumpserver/text in connection string -  and connect to it via ssh.
 sbc () {
