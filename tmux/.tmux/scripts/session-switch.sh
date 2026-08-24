@@ -8,7 +8,15 @@ selected=$(
     | sort -rn \
     | cut -d' ' -f2- \
     | grep -vx "$CURRENT" \
-    | fzf --reverse --tiebreak=begin,index
+    | while IFS= read -r s; do
+        if tmux list-windows -t "$s" -F '#{@agent_wait}' 2>/dev/null | grep -q .; then
+          printf '● %s\n' "$s"
+        else
+          printf '  %s\n' "$s"
+        fi
+      done \
+    | fzf --reverse --tiebreak=begin,index \
+    | sed 's/^[● ]*//'
 )
 
 if [ -n "$selected" ]; then
